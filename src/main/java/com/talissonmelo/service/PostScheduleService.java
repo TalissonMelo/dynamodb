@@ -17,9 +17,8 @@ public class PostScheduleService {
     }
 
     public void execute(ScheduleRequest request) {
-
         Schedule schedule = Schedule.to(UUID.randomUUID(), request);
         dynamoDbTemplate.save(schedule);
-
     }
 }
+

@@ -14,20 +14,18 @@ import java.util.UUID;
 @DynamoDbBean
 public class Schedule {
 
-
     private String id;
-
     private String name;
-
     private UUID patientId;
-
     private LocalDate date;
-
     private LocalTime startTime;
-
     private LocalTime endTime;
-
     private Instant createdAt;
+
+    public Schedule() {
+        this.id = UUID.randomUUID().toString(); // Or leave as null
+        this.createdAt = Instant.now(); // Or set to a default value
+    }
 
     private Schedule(UUID patientId, String name, LocalDate date, LocalTime startTime, LocalTime endTime) {
         this.id = UUID.randomUUID().toString();
@@ -38,7 +36,6 @@ public class Schedule {
         this.startTime = startTime;
         this.setCreatedAt(Instant.now());
     }
-
 
     public static Schedule to(UUID patientId, ScheduleRequest request) {
         return new Schedule(patientId, request.name(), request.date(), request.startTime(), request.endTime());
@@ -100,7 +97,6 @@ public class Schedule {
         this.endTime = endTime;
     }
 
-
     @DynamoDbAttribute("created_at")
     public Instant getCreatedAt() {
         return createdAt;
@@ -110,3 +106,4 @@ public class Schedule {
         this.createdAt = createdAt;
     }
 }
+

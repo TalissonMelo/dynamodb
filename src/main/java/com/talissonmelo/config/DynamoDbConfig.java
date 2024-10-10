@@ -15,7 +15,7 @@ public class DynamoDbConfig {
     public DynamoDbClient dynamoDbClient() {
         return DynamoDbClient.builder()
                 .endpointOverride(URI.create("http://localhost:4566"))
-                .region(Region.SA_EAST_1)
+                .region(Region.US_EAST_1)
                 .build();
     }
 }
